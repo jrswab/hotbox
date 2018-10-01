@@ -10,4 +10,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - SMOKE 0.0.5
 - Config template with node IPs included
-- Docker opens directly to Tmux inside the witness directory
+- Escape the docker container with `ctrl+h`
