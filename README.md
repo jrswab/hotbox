@@ -2,7 +2,6 @@
 Scroll down to see the steps on setting up a new witness.
 ### Moving an existing witness to the Hotbox:
 1. Disable your witness
-  * test
   a. `update_witness "username" "url" "SMK1111111111111111111111111111111114T1Anm" {} true`
   b. Replace `username` and `url` with your information.
   c. Copy and paste the command into the CLI_Wallet.
