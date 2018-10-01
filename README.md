@@ -2,10 +2,15 @@
 Scroll down to see the steps on setting up a new witness.
 ### Moving an existing witness to the Hotbox:
 1. Disable your witness
+2. 
   a. `update_witness "username" "url" "SMK1111111111111111111111111111111114T1Anm" {} true`
+
   b. Replace `username` and `url` with your information.
+  
   c. Copy and paste the command into the CLI_Wallet.
+  
   d. Wait for it to broadcast. You will see some yellow words scroll by and then a group of grayish-white text.
+  
 2. [Use the official instructions to install Docker for ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
 3. Close your wallet with `ctrl+d` if open.
 4. Shut down smoked with `ctrl+c`.
