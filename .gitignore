@@ -4,5 +4,4 @@ smoke/wallet.json
 smoke/witness_node_data_dir
 origSmoke/*
 buildDocker.sh
-runDocker.sh
 push.sh

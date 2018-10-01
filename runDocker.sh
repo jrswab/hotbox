@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# check for user defined ports
+if [ $# -eq 0 ]; then
+	portA=20001
+	portB=28090
+elif [ $# -eq 1 ]; then
+	portA=$1
+elif [ $# -eq 2 ]; then
+	portA=$1
+	portB=$2
+fi
+
+# # run docker
+loc="$(readlink -f smoke)"
+docker container run -it \
+	-v ${loc}:/home/witness/smoke/ \
+	-p $portA:2001 -p $portB:8090 \
+	--name smoke_witness \
+	--rm jrswab/hotbox
