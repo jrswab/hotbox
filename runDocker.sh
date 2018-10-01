@@ -13,8 +13,8 @@ fi
 
 # # run docker
 loc="$(readlink -f smoke)"
-docker container run -it \
+docker container run -itd \
 	-v ${loc}:/home/witness/smoke/ \
 	-p $portA:2001 -p $portB:8090 \
-	--name smoke_witness \
-	--rm jrswab/hotbox
+	--name hotbox \
+	jrswab/hotbox
