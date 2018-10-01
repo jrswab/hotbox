@@ -25,8 +25,6 @@ if [ ! -f ~/smoke/smoked ]; then
 	sleep 4
 	# move updated config
 	cp ~/config/config.ini.example witness_node_data_dir/config.ini
-	# move wallet execution script
-	mv ~/wallet.sh ~/smoke/run_wallet.sh
 else
 	echo 'Smoke directory found'
 fi
