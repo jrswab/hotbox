@@ -16,7 +16,7 @@ Scroll down to see the steps on setting up a new witness.
   b. `git clone https://gitlab.com/jrswab/hotbox`
 7. Copy your smoke directory into hotbox:
   a. `cp -r ~/smoke/* ~/hotbox/smoke`
-8. `./runDocker.sh`
+8. `docker pull jrswab/hotbox:1.0.0` then `./runDocker.sh`
   a. To specify ports just add them to the end eg. `./runDocker.sh 20001 28090`
   b. If no ports are specified the script will expose port 2001 to 20001 and port 8090 to 28090.
   c. If you have a firewall make sure to open the ports used.
@@ -49,7 +49,7 @@ If at anytime while using this guide, these instructions are unclear or you get 
   a. `cd` to be in your home directory
   b. `git clone https://gitlab.com/jrswab/hotbox`
 3. ~~Copy your smoke directory into hotbox:~~
-4. `cd hotbox` then `./runDocker.sh`
+4. `docker pull jrswab/hotbox:1.0.0`, `cd hotbox` then `./runDocker.sh`
   a. To specify ports just add them to the end eg. `./runDocker.sh 20001 28090`
   b. If no ports are specified the script will expose port 2001 to 20001 and port 8090 to 28090.
   c. If you have a firewall make sure to open the ports used.
