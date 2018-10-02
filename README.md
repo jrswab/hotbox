@@ -57,7 +57,7 @@ If at anytime while using this guide, these instructions are unclear or you get 
 6. `cd smoke`
 7. `./run_wallet.sh`
 8. `set_password *PickPassphrase*`
-9. `import_key *Your Smoke Private Active Key*`
+9. `import_key *Your Smoke Private Active Key*` then `unlock youPassphrase`
 10. `suggest_brain_key`
   a. This will give you three keys. A private brain key (all words), a private WIF, and a Public WIF in that order from top to bottom.
   b. Save these in a safe place. If you can I recommend encrypting them.
