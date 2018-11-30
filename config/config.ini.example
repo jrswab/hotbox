@@ -20,7 +20,7 @@ seed-node = 51.15.120.228:2001
 # shared-file-dir = 
 
 # Size of the shared memory file. Default: 1G
-shared-file-size = 1G
+shared-file-size = 8G
 
 # Endpoint for websocket RPC to listen on
 rpc-endpoint = 127.0.0.1:8090
