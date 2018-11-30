@@ -17,4 +17,4 @@ docker container run -itd \
 	-v ${loc}:/home/witness/smoke/ \
 	-p $portA:2001 -p $portB:8090 \
 	--name hotbox \
-	jrswab/hotbox:1.0.0
+	jrswab/hotbox:1.0.1
