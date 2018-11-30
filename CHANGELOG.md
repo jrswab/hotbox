@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.1] - 2018-11-30
+### Changed
+- share-file-size in config.ini.example to 8G
+- readme to reflect intrustional changes and updates.
+
 ## [1.0.0] - 2018-09-30
 ### Added
 - SMOKE 0.0.5
