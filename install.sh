@@ -24,9 +24,9 @@ if [ ! -f ~/smoke/smoked ]; then
 	kill -INT $smokePID
 	sleep 4
 	# move updated config
-	cp ~/config/config.ini.example witness_node_data_dir/config.ini
+	cp ~/.config/config.ini.example witness_node_data_dir/config.ini
 else
-	echo 'Smoke directory found'
+	echo 'SmokeD alreay installed.'
 fi
 
 exit
