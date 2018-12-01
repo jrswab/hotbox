@@ -25,5 +25,5 @@ EXPOSE 8090
 USER witness
 WORKDIR /home/witness/
 
-COPY config/ /home/witness/config/
+COPY config/ /home/witness/.config/
 COPY install.sh /home/witness/
