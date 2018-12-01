@@ -1,4 +1,4 @@
-## Hotbox Version 1.0.1
+## Hotbox Version
 **Scroll down to get the links on migrating a current witness.**
 
 ### Starting up a new witness:
@@ -26,7 +26,7 @@ The instructions for using this docker for a new witness can be found at [this S
     * `git clone https://gitlab.com/jrswab/hotbox`
 7. Copy your smoke directory into hotbox:
     * `cp -r ~/smoke/* ~/hotbox/smoke`
-8. `docker pull jrswab/hotbox:1.0.1`
+8. `docker pull jrswab/hotbox:latest`
 8. `./runDocker.sh`
     * To specify ports just add them to the end eg. `./runDocker.sh 20001 28090`
     * If no ports are specified the script will expose port 2001 to 20001 and port 8090 to 28090.
