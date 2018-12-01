@@ -1,21 +1,23 @@
 #!/bin/bash
 # see if smoked exists
-if [ ! -f ~/smoke/smoked ]; then 
-	cd ~/smoke
-
+if [ ! -f ~/.smoke/smoked ]; then 
+	cd ~/.smoke
+	# download smoked and wallet
 	wget https://github.com/smokenetwork/smoked/releases/download/v0.0.5/smoked-0.0.5-x86_64-linux.tar.gz
-
 	wget https://github.com/smokenetwork/smoked/releases/download/v0.0.5/cli_wallet-0.0.5-x86_64-linux.tar.gz
-
+	
+	# extract smoked and wallet
 	tar -xzf smoked-0.0.5-x86_64-linux.tar.gz
 	tar -xzf cli_wallet-0.0.5-x86_64-linux.tar.gz
-
+	
+	# remove tar files
 	rm *.gz
-
+	
+	# wait two seconds
 	sleep 2
 
 	# Launch script in background
-	~/smoke/smoked &
+	~/.smoke/smoked &
 	# Get its PID
 	smokePID=$!
 	# Wait for 2 seconds
@@ -23,10 +25,12 @@ if [ ! -f ~/smoke/smoked ]; then
 	# Kill it
 	kill -INT $smokePID
 	sleep 4
-	# move updated config
+	# move preset config
 	cp ~/.config/config.ini.example witness_node_data_dir/config.ini
-else
-	echo 'SmokeD alreay installed.'
+	# move to home dir
+	cd
+	# run tmux
+	tmux new -s hotbox
 fi
 
 exit

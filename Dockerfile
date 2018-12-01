@@ -26,4 +26,7 @@ USER witness
 WORKDIR /home/witness/
 
 COPY config/ /home/witness/.config/
-COPY install.sh /home/witness/
+COPY run_wallet.sh /home/witness/
+COPY run_smoked.sh /home/witness/
+
+CMD ["/home/witness/.config/install.sh"]

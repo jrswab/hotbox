@@ -15,13 +15,11 @@ if [ ! $(docker ps -a | tail -c 10) = "hotbox" ]; then
 	# run docker
 	loc="$(readlink -f smoke)"
 	docker container run -itd \
-		-v ${loc}:/home/witness/smoke/ \
+		-v ${loc}:/home/witness/.smoke/ \
 		-p $portA:2001 -p $portB:8090 \
 		--name hotbox \
 		jrswab/hotbox:latest
-
-	# open docker container and set detach keys
-	docker attach --detach-keys="ctrl-h" hotbox
-else
-	docker attach --detach-keys="ctrl-h" hotbox
 fi
+
+# open docker container and set detach keys
+docker attach --detach-keys="ctrl-h" hotbox
