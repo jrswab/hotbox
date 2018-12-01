@@ -27,13 +27,10 @@ The instructions for using this docker for a new witness can be found at [this S
 7. Copy your smoke directory into hotbox:
     * `cp -r ~/smoke/* ~/hotbox/smoke`
 8. `docker pull jrswab/hotbox:latest`
-8. `./runDocker.sh`
+8. `./run.sh`
     * To specify ports just add them to the end eg. `./runDocker.sh 20001 28090`
     * If no ports are specified the script will expose port 2001 to 20001 and port 8090 to 28090.
     * If you have a firewall make sure to open the ports used.
-8. `./enterHotbox.sh` to enter docker.
-    * **Using the enterHotbox script is needed**
-    * It is the only way to detatch from docker whil keeping it running with the commands below.
 9. `tmux new -s hotbox`
 10. `cd smoke`
 11. `./smoked`
@@ -50,7 +47,7 @@ To get back to the smoked screen to see the blocks fall into place type `ctrl+b 
 2. `ctrl+h ` to detach the docker to the background of your server
 
 ### To enter the detached Docker and see witness feed:
-1. `./enterhotbox` (after typing this it may look like it hangs. Just press enter and you will see the docker prompt.)
+1. `./run.sh` (after typing this it may look like it hangs. Just press enter and you will see the docker prompt.)
 2. `tmux a` - to enter your detached tmux session (if you detached tmux before exiting the docker)
 
 ### To check and make sure the docker container did not exit use:
