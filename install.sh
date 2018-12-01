@@ -26,7 +26,7 @@ if [ ! -f ~/smoke/smoked ]; then
 	# move updated config
 	cp ~/.config/config.ini.example witness_node_data_dir/config.ini
 else
-	echo 'Smoke directory found'
+	echo 'SmokeD alreay installed.'
 fi
 
 exit
