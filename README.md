@@ -1,5 +1,5 @@
 ## Hotbox Version 1.0.1
-**Scroll down to get the links on setting up a migrating your current witness.**
+**Scroll down to get the links on migrating a current witness.**
 
 ### Starting up a new witness:
 For information on securing your server please read the [official documentation](https://cdn.discordapp.com/attachments/491080454372327435/495224522556047361/Smoke.io_Witness_Guide_v1.3.pdf) for Smoke witnesses.
