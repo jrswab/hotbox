@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Auto execution of install.sh for new users
 - Auto execution of tmux for new users
 - "enterHotbox.sh" script data to run.sh
+- local smoke directory if non-existant (for new containers)
 
 ### Changed
 - Location of smoke files
