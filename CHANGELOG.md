@@ -21,7 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Location of smoke files
 - startup script name and usage (runDocker.sh to run.sh)
 - `jrswab/hotbox` repo now only holds the files the user needs to run.
-- Moved the original repo files to `jrswab/hotbox-dev` repo on gitlab
+- The original repo files to `jrswab/hotbox-dev` repo on gitlab
 
 ## Removed
 - enterHotbox.sh
