@@ -1,5 +1,2 @@
-smoke/cli_wallet
-smoke/smoked
-smoke/wallet.json
-smoke/witness_node_data_dir
+smoke/*
 push.sh
