@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [ ! -d ./smoke ]; then
+	mkdir ./smoke
+fi
+
 if [ ! $(docker ps -a | tail -c 10) = "hotbox" ]; then
 	# check for user defined ports
 	if [ $# -eq 0 ]; then
