@@ -1,6 +1,6 @@
 # Hotbox Version 2.0
-- [Update a Current Hotbox](## Updating a Current Hotbox Instance:)
-- [Move a Non-Hotbox Witness to the Hotbox](## Moving an existing witness to the Hotbox:)
+- [Update a Current Hotbox](#Updating-a-Current-Hotbox-Instance)
+- [Move a Non-Hotbox Witness to the Hotbox](#Moving-an-existing-witness-to-the-Hotbox)
 
 ## Starting up a new witness:
 For information on securing your server please read the [official documentation](https://cdn.discordapp.com/attachments/491080454372327435/495224522556047361/Smoke.io_Witness_Guide_v1.3.pdf) for Smoke witnesses.
@@ -11,7 +11,7 @@ For a video walk through check out [this Bitchute video](https://www.bitchute.co
 
 The instructions for using this docker for a new witness can be found at [this Smoke post](https://smoke.io/witness/@jrswab/updated-witness-hotbox-install-directions)
 
-## Updating a Current Hotbox Instance:
+## Updating a Current Hotbox Instance
 1. Disable your witness
     * `update_witness "username" "url" "SMK1111111111111111111111111111111114T1Anm" {} true`
     * Replace `username` and `url` with your information.
@@ -37,7 +37,7 @@ The instructions for using this docker for a new witness can be found at [this S
 17. Relock your wallet (it seems smoked will run fine even if the wallet is locked and it's safer)
 
 
-## Moving an existing witness to the Hotbox:
+## Moving an existing witness to the Hotbox
 1. Disable your witness
     * `update_witness "username" "url" "SMK1111111111111111111111111111111114T1Anm" {} true`
     * Replace `username` and `url` with your information.
