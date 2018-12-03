@@ -81,8 +81,10 @@ To get back to the smoked screen to see the blocks fall into place type `ctrl+b 
 
 ## Check if Hotbox is Running
 * `docker container ps -a`.
-  * You should see something like:
-    * `8753ea10189a jrswab/hotbox "/bin/bash" 22 minutes ago Up 22 minutes 0.0.0.0:20001->2001/tcp, 0.0.0.0:28090->8090/tcp hotbox`
+  * You should see something like: `8753ea10189a jrswab/hotbox "/bin/bash" 22 minutes ago Up 22 minutes 0.0.0.0:20001->2001/tcp, 0.0.0.0:28090->8090/tcp hotbox`
+  * If you see the work "exited" your Hotbox is not running. To restart, run:
+    * `docker rm hotbox`
+    * `run.sh`
 
 ---
 
