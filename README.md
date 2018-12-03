@@ -76,8 +76,7 @@ To get back to the smoked screen to see the blocks fall into place type `ctrl+b 
 
 ## To enter the Hotbox
 1. `./run.sh` (after typing this it may look like it hangs. Just press enter and you will see the docker prompt.)
-2. `tmux a` - to enter your detached tmux session (if you detached tmux before exiting the docker)
-    * If you opened a new tmux window before detatching it may look like it hangs, if so just press enter to view the prompt
+2. If it looks like it hangs, if so just press enter to view the prompt
 
 ## Check if Hotbox is Running
 * `docker container ps -a`.
