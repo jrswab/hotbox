@@ -1,6 +1,9 @@
 # Hotbox Version 2.0
 - [Update a Current Hotbox](#updating-a-current-hotbox-instance)
 - [Move a Non-Hotbox Witness to the Hotbox](#moving-an-existing-witness-to-the-hotbox)
+- [Detaching From the Hotbox](#to-detach-from-the-hotbox)
+- [To enter the Hotbox](#to-enter-the-hotbox)
+- [Check to make sure the Hotbox is running](#check-if-hotbox-is-running)
 
 ## Starting up a new witness:
 For information on securing your server please read the [official documentation](https://cdn.discordapp.com/attachments/491080454372327435/495224522556047361/Smoke.io_Witness_Guide_v1.3.pdf) for Smoke witnesses.
@@ -67,15 +70,16 @@ The instructions for using this docker for a new witness can be found at [this S
 
 To get back to the smoked screen to see the blocks fall into place type `ctrl+b 0`.
 
-## To detach from the Docker:
+## To detach from the Hotbox
 1. `ctrl+b c` to open a new Tmux window (needed to detach).
 2. `ctrl+h ` to detach the docker to the background of your server
 
-## To enter the detached Docker and see witness feed:
+## To enter the Hotbox
 1. `./run.sh` (after typing this it may look like it hangs. Just press enter and you will see the docker prompt.)
 2. `tmux a` - to enter your detached tmux session (if you detached tmux before exiting the docker)
+    * If you opened a new tmux window before detatching it may look like it hangs, if so just press enter to view the prompt
 
-## To check and make sure the docker container did not exit use:
+## Check if Hotbox is Running
 * `docker container ps -a`.
   * You should see something like:
     * `8753ea10189a jrswab/hotbox "/bin/bash" 22 minutes ago Up 22 minutes 0.0.0.0:20001->2001/tcp, 0.0.0.0:28090->8090/tcp hotbox`
