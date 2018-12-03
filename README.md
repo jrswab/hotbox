@@ -1,6 +1,6 @@
 # Hotbox Version 2.0
-- [Update a Current Hotbox](#Updating-a-Current-Hotbox-Instance)
-- [Move a Non-Hotbox Witness to the Hotbox](#Moving-an-existing-witness-to-the-Hotbox)
+- [Update a Current Hotbox](#updating-a-current-hotbox-instance)
+- [Move a Non-Hotbox Witness to the Hotbox](#moving-an-existing-witness-to-the-hotbox)
 
 ## Starting up a new witness:
 For information on securing your server please read the [official documentation](https://cdn.discordapp.com/attachments/491080454372327435/495224522556047361/Smoke.io_Witness_Guide_v1.3.pdf) for Smoke witnesses.
