@@ -22,6 +22,7 @@ If at anytime while using this guide, these instructions are unclear or you get 
     - If no ports are specified the script will expose port 2001 to 20001 and port 8090 to 28090.
 3. `./wallet.sh`
 4. `set_password *PickPassphrase*`
+5. `unlock *YourPassphrase*`
 5. `import_key *Your Smoke Private Active Key*`
 6. `suggest_brain_key`
     - This will give you three keys. A private brain key (all words), a private WIF, and a Public WIF in that order from top to bottom.
@@ -29,8 +30,8 @@ If at anytime while using this guide, these instructions are unclear or you get 
 7. `import_key *Private WIF*`
     - Use the private WIF from the suggested brain key command above.
 8. `ctrl+b` `c` to open a new Tmux window
-9. `config.ini`
-    - Vim is also included in the Docker if you prefer that editor. Use `config.ini vim`
+9. `./config.sh`
+    - Vim is also included in the Docker if you prefer that editor. Use `./config.sh vim`
 10. Find the line that says `#witness =`
     - remove the `#` and add your Smoke username
     - eg. witness = "jrswab"
@@ -42,7 +43,9 @@ If at anytime while using this guide, these instructions are unclear or you get 
 12. Save and exit the config
     - In nano: ctrl + x then y to save the press enter to execute.
 13. `./smoked.sh`
-    - Now the witness is running. Wait until you see `handled block ] Got 1 transactions on block` showing on the screen. Once you see them you can now enable your witness.
+    - Now the witness is running.
+    - Wait until you see `handled block ] Got 1 transactions on block` showing on the screen.
+    - Once you see them you can now enable your witness.
 14. `ctrl+b 0` to go back to the screen with your wallet.
 15. `update_witness "username" "url" "Public Key" {} true`
     - Replace username and url with your information.
