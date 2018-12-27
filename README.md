@@ -1,20 +1,64 @@
 # Hotbox Version 2.0
+![hotbox-2](https://cloudflare-ipfs.com/ipfs/QmeCnxqWL8mZzdQ3aaC5dXothJ2utX9G2Kg7iwkGHoqozg)
+## Contents:
+- [Starting a New Witness](#starting-a-new-witness)
 - [Update a Current Hotbox](#updating-a-current-hotbox-instance)
-- [Move a Non-Hotbox Witness to the Hotbox](#moving-an-existing-witness-to-the-hotbox)
+- [Move a Non-Hotbox Witness to the Hotbox](#moving-a-non-hotbox-existing-witness-to-the-hotbox)
 - [Detaching From the Hotbox](#to-detach-from-the-hotbox)
 - [To enter the Hotbox](#to-enter-the-hotbox)
 - [Check to make sure the Hotbox is running](#check-if-hotbox-is-running)
 
-## Starting up a new witness:
+## Starting up a new witness
 For information on securing your server please read the [official documentation](https://cdn.discordapp.com/attachments/491080454372327435/495224522556047361/Smoke.io_Witness_Guide_v1.3.pdf) for Smoke witnesses.
 
 If at anytime while using this guide, these instructions are unclear or you get stuck please message me on Discord. You can find be me in the [smoke.io Discord group](https://discord.gg/MpJH3qq) as "J. R. Swab".
 
-For a video walk through check out [this Bitchute video](https://www.bitchute.com/video/-TDVmen14AM/)
+1. [Use the official instructions to install Docker for ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
+1. Clone the Hotbox Git repository: `git clone https://gitlab.com/jrswab/hotbox`
+1. `cd hotbox`
+1. `docker pull jrswab/hotbox`
+2. `./run.sh`
+    - To specify ports just add them directly after run.sh eg. `./run.sh 20001 28090`
+    - If no ports are specified the script will expose port 2001 to 20001 and port 8090 to 28090.
+3. `./wallet.sh`
+4. `set_password *PickPassphrase*`
+5. `unlock *YourPassphrase*`
+5. `import_key *Your Smoke Private Active Key*`
+6. `suggest_brain_key`
+    - This will give you three keys. A private brain key (all words), a private WIF, and a Public WIF in that order from top to bottom.
+    - Save these in a safe place. If you can I recommend encrypting them.
+7. `import_key *Private WIF*`
+    - Use the private WIF from the suggested brain key command above.
+8. `ctrl+b` `c` to open a new Tmux window
+9. `./config.sh`
+    - Vim is also included in the Docker if you prefer that editor. Use `./config.sh vim`
+10. Find the line that says `#witness =`
+    - remove the `#` and add your Smoke username
+    - eg. witness = "jrswab"
+    - Quotes are required.
+11. Find the line that says `#private-key =`
+    - remove the # and add your private WIF we got from the wallet in step 10.
+    - eg. `private-key = xxxxxxxxxxxxxxxx`
+    - No quotes around the key.
+12. Save and exit the config
+    - In nano: ctrl + x then y to save the press enter to execute.
+13. `./smoked.sh`
+    - Now the witness is running.
+    - Wait until you see `handled block ] Got 1 transactions on block` showing on the screen.
+    - Once you see them you can now enable your witness.
+14. `ctrl+b 0` to go back to the screen with your wallet.
+15. `update_witness "username" "url" "Public Key" {} true`
+    - Replace username and url with your information.
+    - The "Public Key" is the public key we got from the wallet in step 10.
+    - Copy and paste the command into the CLI_Wallet.
+    - Wait for it to broadcast. You will see some yellow words scroll by and then a group of grayish-white text.
 
-The instructions for using this docker for a new witness can be found at [this Smoke post](https://smoke.io/witness/@jrswab/updated-witness-hotbox-install-directions)
+Now you can go back to the feed with `ctrl+b 1` to see the blocks!
+Congrats! You are a witness now!
 
 ## Updating a Current Hotbox Instance
+***[Watch this Bitchute video!](https://www.bitchute.com/video/XyaHGHj7x9lV/)***
+
 1. Disable your witness
     * `update_witness "username" "url" "SMK1111111111111111111111111111111114T1Anm" {} true`
     * Replace `username` and `url` with your information.
@@ -23,11 +67,12 @@ The instructions for using this docker for a new witness can be found at [this S
 3. Close your wallet with `ctrl+d` if open.
 4. Shut down smoked with `ctrl+c`.
 5. Make a copy of your smoke directory:
-    * `cp -r ~/smoke ~/smokebackup`
+    * `cp -r ~/hotbox/smoke ~/smokebackup`
 6. Pull the Hotbox Git repository:
     * `cd` - this is to move into your home directory
+    * Remove old rep `sudo rm -r ~/hotbox` (Make sure to double check that your config.ini file is backed up!)
     * `git clone https://gitlab.com/jrswab/hotbox`
-8. `docker pull jrswab/hotbox:latest`
+8. `docker pull jrswab/hotbox`
 8. `./run.sh`
     * To specify ports just add them to the end eg. `./run.sh 20001 28090`
     * If no ports are specified the script will expose port 2001 to 20001 and port 8090 to 28090.
@@ -37,10 +82,9 @@ The instructions for using this docker for a new witness can be found at [this S
 14. `./wallet.sh`
 15. Unlock the wallet with your secret passphrase.
 16. Re-enable your witness.
-17. Relock your wallet (it seems smoked will run fine even if the wallet is locked and it's safer)
+17. Re-lock your wallet (it seems smoked will run fine even if the wallet is locked and it's safer)
 
-
-## Moving an existing witness to the Hotbox
+## Moving a Non Hotbox Witness to the Hotbox
 1. Disable your witness
     * `update_witness "username" "url" "SMK1111111111111111111111111111111114T1Anm" {} true`
     * Replace `username` and `url` with your information.
