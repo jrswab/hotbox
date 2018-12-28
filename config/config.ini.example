@@ -12,6 +12,7 @@ seed-node = 163.172.128.38:2001
 seed-node = 51.15.95.123:2001
 seed-node = 51.15.223.10:2001
 seed-node = 51.15.120.228:2001
+seed-node = smoke.bushkill.rocks:2002
 
 # Pairs of [BLOCK_NUM,BLOCK_ID] that should be enforced as checkpoints.
 # checkpoint = 
