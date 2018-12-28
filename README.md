@@ -9,8 +9,7 @@
 - [Check to make sure the Hotbox is running](#check-if-hotbox-is-running)
 
 ## Starting up a new witness
-For information on securing your server please read the [official documentation](https://cdn.discordapp.com/attachments/491080454372327435/495224522556047361/Smoke.io_Witness_Guide_v1.3.pdf) for Smoke witnesses.
-
+For information on securing your server please read the [official documentation](https://cdn.discordapp.com/attachments/421494316301811725/528077336944443402/Smoke.io_Witness_Guide_v1.4.pdf)
 If at anytime while using this guide, these instructions are unclear or you get stuck please message me on Discord. You can find be me in the [smoke.io Discord group](https://discord.gg/MpJH3qq) as "J. R. Swab".
 
 1. [Use the official instructions to install Docker for ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
