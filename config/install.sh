@@ -8,7 +8,7 @@ if [ ! -f ~/.smoke/smoked ]; then
 	wget https://github.com/smokenetwork/smoked/releases/download/v0.0.6/cli_wallet-0.0.6-x86_64-linux.tar.gz
 	
 	# extract smoked and wallet
-	tar -xzf smoked-0.0.6-x86_64-linux.tar.gz
+	tar -xzf smoked-0.0.7-x86_64-linux.tar.gz
 	tar -xzf cli_wallet-0.0.6-x86_64-linux.tar.gz
 	
 	# remove tar files
