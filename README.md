@@ -10,7 +10,7 @@
 
 ## Starting up a new witness
 For information on securing your server please read the [official documentation](https://cdn.discordapp.com/attachments/421494316301811725/528077336944443402/Smoke.io_Witness_Guide_v1.4.pdf)
-If at anytime while using this guide, these instructions are unclear or you get stuck please message me on Discord. You can find be me in the [smoke.io Discord group](https://discord.gg/MpJH3qq) as "J. R. Swab".
+If at anytime while using this guide, these instructions are unclear or you get stuck please message me on Discord. You can find be me in the [smoke.io Discord group](https://discord.gg/MpJH3qq) as "jrswab".
 
 1. [Use the official instructions to install Docker for ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
 1. Clone the Hotbox Git repository: `git clone https://gitlab.com/jrswab/hotbox`

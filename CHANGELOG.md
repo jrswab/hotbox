@@ -5,8 +5,47 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## Added
+- Witness disabled check to update script
 
-## [2.0.0] - 2018-12-01
+## Updated
+- changelog.md with missing releases
+- contributing.md
+- config.ini.example plugins for less RAM usage
+
+## Changed
+- update.sh to be the core file.
+
+## 2.0.5 - 2020-02-22
+## Changed
+- Config.ini plugins for less RAM usage
+
+## 2.0.4 - 2020-02-21
+## Changed
+- Update file to pull smoked v0.1.0
+- Install file to pull smoke v0.1.0
+
+## 2.0.3 - 2019-11-19
+## Changed
+- Update file to pull smoked v0.0.7
+- Install file to pull smoke v0.0.7
+
+## Fixed
+- Incorrect wget url
+- Update script url
+
+# 2.0.2 - 2018-12-31
+## Added
+- Update script
+
+## Fixed
+- Missing wget
+
+## 2.0.1 - 2018-12-27
+## Changed
+- Install file to pull smoke v0.0.6
+
+## 2.0.0 - 2018-12-01
 ### Added
 - Script to run smoked
 - Script to edit config.ini which allows the user specify an editor such as
@@ -26,12 +65,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Removed
 - enterHotbox.sh
 
-## [1.0.1] - 2018-11-30
+## 1.0.1 - 2018-11-30
 ### Changed
 - share-file-size in config.ini.example to 8G
 - readme to reflect intrustional changes and updates.
 
-## [1.0.0] - 2018-09-30
+## 1.0.0 - 2018-09-30
 ### Added
 - SMOKE 0.0.5
 - Config template with node IPs included
