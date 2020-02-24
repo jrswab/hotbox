@@ -31,4 +31,4 @@ COPY smoked.sh /home/witness/
 COPY config.sh /home/witness/
 COPY update.sh /home/witness/
 
-CMD ["/home/witness/.config/install.sh"]
+CMD ["/home/witness/install.sh"]
