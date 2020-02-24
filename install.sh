@@ -7,8 +7,8 @@ if [ ! -f ~/.smoke/smoked ]; then
 	cd ~/.smoke
 
 	# download smoked and wallet
-	wget https://github.com/smokenetwork/smoked/releases/download/v0.1.0/smoked-${SV}-x86_64-linux.tar.gz
-	wget https://github.com/smokenetwork/smoked/releases/download/v0.0.6/cli_wallet-${WV}-x86_64-linux.tar.gz
+	wget https://github.com/smokenetwork/smoked/releases/download/v${SV}/smoked-${SV}-x86_64-linux.tar.gz
+	wget https://github.com/smokenetwork/smoked/releases/download/v${WV}/cli_wallet-${WV}-x86_64-linux.tar.gz
 	
 	# extract smoked and wallet
 	tar -xzf smoked-${SV}-x86_64-linux.tar.gz
