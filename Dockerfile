@@ -6,14 +6,19 @@ RUN apt-get update \
 		bash \ 
 		wget \
 		jq \ 
-		git \ 
 		vim \
 		tmux \
 		libreadline6 \
 		nano \
-	&& apt-get install -y autotools-dev build-essential g++ \
-		libbz2-dev libicu-dev doxygen python3-dev \
-		python3-pip libboost-all-dev curl \
+		autotools-dev \
+		build-essential \
+		g++ \
+		libbz2-dev \
+		libicu-dev \
+		doxygen \
+		python3-dev \
+		python3-pip \
+		libboost-all-dev \
 	&& apt-get clean -qy \
 	&& useradd --create-home --shell /bin/bash witness
 
@@ -31,4 +36,4 @@ COPY smoked.sh /home/witness/
 COPY config.sh /home/witness/
 COPY update.sh /home/witness/
 
-CMD ["/home/witness/install.sh"]
+CMD ["/home/witness/.config/install.sh"]
