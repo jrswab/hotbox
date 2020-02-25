@@ -36,6 +36,12 @@ if [ ! -f ~/.smoke/smoked ]; then
 	cd
 fi
 
+cd
+mkdir hotbox
+wget https://github.com/jrswab/hotbox/releases/download/v2.0.5/run.sh
+chmod 550 run.sh
+docker pull jrswab/hotbox
+
 # run tmux with multiple window created.
 tmux new-session -d 'hotbox'
 tmux new-window 'wallet'
