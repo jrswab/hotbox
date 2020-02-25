@@ -1,9 +1,4 @@
-smoke/cli_wallet
-smoke/smoked
-smoke/wallet.json
-smoke/witness_node_data_dir
 smoke/*
-smoke
+smoke/
 buildDocker.sh
-runDocker.sh
 push.sh

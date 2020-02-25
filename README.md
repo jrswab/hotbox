@@ -12,10 +12,10 @@ If you have any ideas on how to make this better please let me know or submit a 
 - [Check to make sure the Hotbox is running](#check-if-hotbox-is-running)
 
 ## Starting up a new witness
-A video walkthrough can be found on [bitchute](https://www.bitchute.com/video/7E6cl7p1uTmt/).
-The video and the walkthrough below assume you are using Ubuntu.
-If at anytime while using this guide, these instructions are unclear or you get stuck please message me on Discord.
-You can find be me in the [smoke.io Discord group](https://discord.gg/MpJH3qq) as "J. R. Swab".
+- A video walkthrough can be found on [bitchute](https://www.bitchute.com/video/7E6cl7p1uTmt/).
+- The video and the walkthrough below assume you are using Ubuntu.
+- If at anytime while using this guide, these instructions are unclear or you get stuck please message me on Discord.
+- You can find be me in the [smoke.io Discord group](https://discord.gg/MpJH3qq) as "J. R. Swab".
 
 ### Pre-Hotbox Server Setup:
  - If you are on Windows, [download Putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) to connect to your server.
@@ -63,8 +63,6 @@ You can find be me in the [smoke.io Discord group](https://discord.gg/MpJH3qq) a
    - Save the file.
    - Reboot: `sudo reboot now`
 1. Once the server is rebooted log back in as your created user.
-1. Install Git
-   - Ubuntu `sudo apt-get install git`
 1. Install Docker
    - [Use the official instructions from Docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
 
@@ -74,10 +72,8 @@ You can find be me in the [smoke.io Discord group](https://discord.gg/MpJH3qq) a
 !Do not run these as root or else the Hotbox will not have access to the files it needs
 1. `cd`
 1. `mkdir hotbox`
-3. `cd hotbox`
-4. `git init`
-1. Clone the Hotbox Git repository: `git pull https://gitlab.com/jrswab/hotbox`
-1. `cd hotbox`
+1. `wget https://github.com/jrswab/hotbox/releases/download/v2.0.5/run.sh`
+1. `chmod 550 run.sh`
 1. `docker pull jrswab/hotbox`
 2. `./run.sh`
     - To specify ports just add them directly after run.sh eg. `./run.sh 20001 28090`

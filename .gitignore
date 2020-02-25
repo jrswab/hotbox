@@ -1,5 +1,4 @@
 smoke/
 smoke/*
 docker/push.sh
-images/
-images/*
+docker/buildDocker.sh
