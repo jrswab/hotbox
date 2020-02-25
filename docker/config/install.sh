@@ -36,7 +36,9 @@ if [ ! -f ~/.smoke/smoked ]; then
 	cd
 fi
 
-# run tmux
-tmux new -s hotbox
+# run tmux with multiple window created.
+tmux new-session -d 'hotbox'
+tmux new-window 'wallet'
+tmux -2 attach-session -d
 
 exit

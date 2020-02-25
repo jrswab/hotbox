@@ -65,14 +65,15 @@ read -r userLogin
 
 # disable root login and updat fstab
 if [ "$userLogin" = "y" ]; then
-   sed -i '/PermitRootLogin yes/c\PermitRootLogin no' /etc/ssh/sshd_config
-   echo "tmpfs /run/shm tmpfs defaults,noexec,nosuid 0 0" >> /etc/fstab
+    # deleting with sed and appending with echo due to differences between OSes
+    sed -i '/PermitRootLogin yes/c\' /etc/ssh/sshd_config
+    echo "PermitRootLogin no" >> /etc/ssh/sshd_config
 
-   echo "Only use the newly created user from now on."
-   echo "Server reboot required. Once rebooted login as your new user."
-   echo "Type 'reboot' to reboot now; or 'wait' to contiune using the root user."
-   read -r rebootNow
-   if [ "$rebootNow" = "reboot" ]; then
-      shutdown -r now;
-   fi
+    echo "tmpfs /run/shm tmpfs defaults,noexec,nosuid 0 0" >> /etc/fstab
+
+    echo "-------------------------------------------"
+    echo "Only use the newly created user from now on."
+    echo ""
+    echo "Server reboot required. Once rebooted login as your new user."
+    echo "Root login over ssh has been disabled for server saftey."
 fi
