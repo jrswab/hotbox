@@ -2,7 +2,7 @@ html {
     display: grid;
     justify-items: center;
     align-items: center;
-    font-size: 14px;
+    font-size: 18px;
     color: #2E3440;
     background-color: #ECEFF4;
 }
@@ -18,7 +18,7 @@ code {
 }
 
 ol, ul {
-    line-height: 28px;
+    line-height: 32px;
 }
 
 a {
