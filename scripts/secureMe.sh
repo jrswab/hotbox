@@ -8,10 +8,12 @@ if [ "$chgRoot" = "y" ]; then
     passwd
 fi
 
+echo ""
 echo "Updating Your Operating System:"
 sleep 2;
 apt-get update && apt-get upgrade;
 
+echo ""
 echo "Installing firewall:";
 sleep 2;
 apt-get install ufw;
@@ -25,6 +27,7 @@ ufw default allow outgoing &&
 ufw limit openssh &&
 ufw enable;
 
+echo ""
 echo "Open a new terminal or putty session."
 echo "Try to login again as root with your new password to make sure you are not locked out."
 echo "Were you able to log back in? [y|n]"
@@ -52,7 +55,6 @@ fi
 
 adduser --gecos "" "$username"
 usermod -a -G sudo "$username"
-passwd "$username"
 groupadd docker
 usermod -aG docker "$username"
 
@@ -71,6 +73,6 @@ if [ "$userLogin" = "y" ]; then
    echo "Type 'reboot' to reboot now; or 'wait' to contiune using the root user."
    read -r rebootNow
    if [ "$rebootNow" = "reboot" ]; then
-      reboot now;
+      shutdown -r now;
    fi
 fi
