@@ -2,8 +2,8 @@ smoke/cli_wallet
 smoke/smoked
 smoke/wallet.json
 smoke/witness_node_data_dir
-origSmoke/*
+smoke/*
+smoke
 buildDocker.sh
 runDocker.sh
 push.sh
-CHANGELOG.md

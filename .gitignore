@@ -1,3 +1,5 @@
 smoke/
 smoke/*
 docker/push.sh
+images/
+images/*
