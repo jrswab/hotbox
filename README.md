@@ -18,6 +18,8 @@ If at anytime while using this guide, these instructions are unclear or you get 
 You can find be me in the [smoke.io Discord group](https://discord.gg/MpJH3qq) as "J. R. Swab".
 
 ### Pre-Hotbox Server Setup:
+ - If you are on Windows, [download Putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) to connect to your server.
+ - MacOS and Linux users use your terminal.
 #### As The Root User:
 1. Change Root Password:
    - Trust no one. Even your hosting service.
