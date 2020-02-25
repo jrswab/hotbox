@@ -1,5 +1,8 @@
 # Hotbox Version 2.0
-![hotbox-2](https://cloudflare-ipfs.com/ipfs/QmeCnxqWL8mZzdQ3aaC5dXothJ2utX9G2Kg7iwkGHoqozg)
+The goal of this project is to make running a witness for smoke.io more predictable and reliable.
+
+If you have any ideas on how to make this better please let me know or submit a pull request.
+
 ## Contents:
 - [Starting a New Witness](#starting-a-new-witness)
 - [Update a Current Hotbox](#updating-a-current-hotbox-instance)
@@ -9,11 +12,69 @@
 - [Check to make sure the Hotbox is running](#check-if-hotbox-is-running)
 
 ## Starting up a new witness
-For information on securing your server please read the [official documentation](https://cdn.discordapp.com/attachments/421494316301811725/528077336944443402/Smoke.io_Witness_Guide_v1.4.pdf)
-If at anytime while using this guide, these instructions are unclear or you get stuck please message me on Discord. You can find be me in the [smoke.io Discord group](https://discord.gg/MpJH3qq) as "jrswab".
+A video walkthrough can be found on [bitchute](https://www.bitchute.com/video/7E6cl7p1uTmt/).
+The video and the walkthrough below assume you are using Ubuntu.
+If at anytime while using this guide, these instructions are unclear or you get stuck please message me on Discord.
+You can find be me in the [smoke.io Discord group](https://discord.gg/MpJH3qq) as "J. R. Swab".
 
-1. [Use the official instructions to install Docker for ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
-1. Clone the Hotbox Git repository: `git clone https://gitlab.com/jrswab/hotbox`
+### Pre-Hotbox Server Setup:
+#### As The Root User:
+1. Change Root Password:
+   - Trust no one. Even your hosting service.
+   - Run: `passwd`
+1. Update your server:
+   - `apt-get update`
+   - `apt-get upgrade`
+1. Install a Firewall
+   - `apt-get install ufw`
+   - `ufw allow ssh`
+   - `ufw allow 2001` - Smoked uses this port
+   - `ufw allow 8090` - Smoked uses this port
+   - `ufw deny http`
+   - `ufw deny https`
+   - `ufw default deny incoming`
+   - `ufw default allow outgoing`
+   - `ufw limit OpenSSH` - Helps prevent brute force attacks
+   - `ufw enable`
+2. Open a new terminal or putty session
+3. Try to login again to make sure you are not locked out.
+1. Create user (replace new_username with something else):
+   - `# adduser new_username`
+2. Add your new_username to the SUDO group:
+   - `# usermod -a -G sudo new_username`
+3. Create a password for the new user:
+   - `# passwd new_user`
+3. Set up Docker group and add your new user:
+   - `sudo groupadd docker`
+   - `sudo usermod -aG docker new_username`
+4. Open a new terminal or putty session
+5. Login with your new username and password.
+   - If successful only use this user from now on.
+
+#### As Your Created User:
+1. Disable Root Login (optional but recomended):
+   - `sudo nano /ect/ssh/sshd_config`
+   - Change "PermitRootLogin" to no.
+6. Update Your Shared Memory:
+   - `sudo nano /etc/fstab`
+   - At the bottom add: `tmpfs /run/shm tmpfs defaults,noexec,nosuid 0 0`
+   - Save the file.
+   - Reboot: `sudo reboot now`
+1. Once the server is rebooted log back in as your created user.
+1. Install Git
+   - Ubuntu `sudo apt-get install git`
+1. Install Docker
+   - [Use the official instructions from Docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
+
+### Installing the Hotbox:
+!You need to run the following commands as the user you created above
+
+!Do not run these as root or else the Hotbox will not have access to the files it needs
+1. `cd`
+1. `mkdir hotbox`
+3. `cd hotbox`
+4. `git init`
+1. Clone the Hotbox Git repository: `git pull https://gitlab.com/jrswab/hotbox`
 1. `cd hotbox`
 1. `docker pull jrswab/hotbox`
 2. `./run.sh`
@@ -21,7 +82,7 @@ If at anytime while using this guide, these instructions are unclear or you get 
     - If no ports are specified the script will expose port 2001 to 20001 and port 8090 to 28090.
 3. `./wallet.sh`
 4. `set_password *PickPassphrase*`
-5. `unlock *YourPassphrase*`
+5. `unlock <password set with set_password>`
 5. `import_key *Your Smoke Private Active Key*`
 6. `suggest_brain_key`
     - This will give you three keys. A private brain key (all words), a private WIF, and a Public WIF in that order from top to bottom.
@@ -42,9 +103,7 @@ If at anytime while using this guide, these instructions are unclear or you get 
 12. Save and exit the config
     - In nano: ctrl + x then y to save the press enter to execute.
 13. `./smoked.sh`
-    - Now the witness is running.
-    - Wait until you see `handled block ] Got 1 transactions on block` showing on the screen.
-    - Once you see them you can now enable your witness.
+    - Now the witness is running. Wait until you see `handled block ] Got 1 transactions on block` showing on the screen. Once you see them you can now enable your witness.
 14. `ctrl+b 0` to go back to the screen with your wallet.
 15. `update_witness "username" "url" "Public Key" {} true`
     - Replace username and url with your information.
@@ -123,13 +182,8 @@ To get back to the smoked screen to see the blocks fall into place type `ctrl+b 
 
 ## Check if Hotbox is Running
 * `docker container ps -a`.
-  * You should see something like: `8753ea10189a jrswab/hotbox "/bin/bash" 22 minutes ago Up 22 minutes 0.0.0.0:20001->2001/tcp, 0.0.0.0:28090->8090/tcp hotbox`
-  * If you see the work "exited" your Hotbox is not running. To restart, run:
+* You should see something like:
+  * `8753ea10189a jrswab/hotbox "/bin/bash" 22 minutes ago Up 22 minutes ...`
+  * If you see the word "exited" your Hotbox is not running. To restart, run:
     * `docker rm hotbox`
     * `run.sh`
-
----
-
-Hope this docker is helpful in making running a witness more predictable and reliable.
-
-If you have any ideas on how to make this better please let me know or submit a pull request.
