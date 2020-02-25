@@ -50,7 +50,7 @@ if [ "$username" = "" ]; then
    read -r username
 fi
 
-adduser "$username"
+adduser --gecos "" "$username"
 usermod -a -G sudo "$username"
 passwd "$username"
 groupadd docker
@@ -63,7 +63,7 @@ read -r userLogin
 
 # disable root login and updat fstab
 if [ "$userLogin" = "y" ]; then
-   sed -i '/PermitRootLogin yes/c\PermitRootLogin no' /ect/ssh/sshd_config
+   sed -i '/PermitRootLogin yes/c\PermitRootLogin no' /etc/ssh/sshd_config
    echo "tmpfs /run/shm tmpfs defaults,noexec,nosuid 0 0" >> /etc/fstab
 
    echo "Only use the newly created user from now on."
