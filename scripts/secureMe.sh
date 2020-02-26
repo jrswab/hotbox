@@ -73,6 +73,17 @@ echo "Login with your new username and password."
 echo "Was the login successful? (y|n)"
 read -r userLogin
 
+# Check if the hotbox directory exists on the server.
+# If not change to the home directory
+if [ ! -d /home/"$username"/hotbox ]; then
+	cd /home/"$username"/
+	runuser -l "$username" -c 'mkdir hotbox' &&
+	cd /home/"$username"/hotbox &&
+	runuser -l "$username" -c 'wget https://github.com/jrswab/hotbox/releases/download/v2.0.5/run.sh' &&
+	runuser -l "$username" -c 'chmod 550 run.sh';
+	runuser -l "$username" -c 'docker pull jrswab/hotbox'
+fi
+
 # disable root login and updat fstab
 if [ "$userLogin" = "y" ]; then
     # deleting with sed and appending with echo due to differences between OSes
@@ -81,7 +92,7 @@ if [ "$userLogin" = "y" ]; then
 
     echo "tmpfs /run/shm tmpfs defaults,noexec,nosuid 0 0" >> /etc/fstab
 
-    echo "-------------------------------------------"
+    echo ""
     echo "Only use the newly created user from now on."
     echo ""
     echo "Server reboot required. Once rebooted login as your new user."
