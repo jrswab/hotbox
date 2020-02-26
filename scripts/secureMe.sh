@@ -25,6 +25,9 @@ ufw deny https &&
 ufw default deny incoming &&
 ufw default allow outgoing &&
 ufw limit openssh &&
+# User will be asked:
+# Command may disrupt existing ssh connections. Proceed with operation (y|n)?
+# Add to the updated walkthrough
 ufw enable;
 
 echo ""
@@ -46,17 +49,15 @@ if [ "$access" = "n" ]; then
 fi
 
 # Install Docker:
-apt-get remove docker docker-engine docker.io containerd runc;
-apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common;
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
-add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-apt-get update
-apt-get install docker-ce docker-ce-cli containerd.io
-groupadd docker
+curl -fsSL https://get.docker.com -o get-docker.sh
+sh get-docker.sh
 systemctl enable docker
 
 # user has access:
-echo "Choose a user name. (The Hotbox can not be run as root.)"
+echo "The Hotbox can not be run as root."
+echo "So let's create a new user."
+echo ""
+echo "Choose a user name."
 read -r username
 if [ "$username" = "" ]; then
    echo "No name entered; please enter a name:"

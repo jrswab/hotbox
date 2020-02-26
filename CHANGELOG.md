@@ -12,12 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Updated
 - changelog.md with missing releases
 - contributing.md
-- readme.md
 - .gitinore
 - .dockerignore
 
 ### Changed
 - update.sh to be the core file.
+- readme.md now that walkthroughs are in github wiki
 
 ## 2.0.5 - 2020-02-22
 ### Changed
