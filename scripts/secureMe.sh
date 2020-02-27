@@ -6,22 +6,19 @@ nc='\033[0m' # No Color
 # Change root password (optional):
 echo "${green}"
 echo "Would you like to change the Root password? (Recomended if the server is new) [y|n]"
-echo "If your server already had you do this type n and press enter"
-echo "${nc}"
+echo "If your server already had you do this type n and press enter${nc}"
 read -r chgRoot
 if [ "$chgRoot" = "y" ]; then
     passwd
 fi
 
 echo "${green}"
-echo "Updating Your Operating System:"
-echo "${nc}"
+echo "Updating Your Operating System:${nc}"
 sleep 2;
 apt-get update && apt-get upgrade;
 
 echo "${green}"
-echo "Installing firewall:";
-echo "${nc}"
+echo "Installing firewall:${nc}";
 sleep 2;
 apt-get install ufw;
 ufw allow ssh &&
@@ -40,22 +37,19 @@ ufw enable;
 echo "${green}"
 echo "Open a new terminal or putty session."
 echo "Try to login again as root with your new password to make sure you are not locked out."
-echo "Were you able to log back in? [y|n]"
-echo "${nc}"
+echo "Were you able to log back in? [y|n]${nc}"
 read -r access
 if [ "$access" = "n" ]; then
     ufw disable;
     echo "${green}"
     echo "Disabled Firewall"
     echo "Try to login again as root with your new password to make sure you are not locked out."
-    echo "Were you able to log back in? [y|n]"
-    echo "${nc}"
+    echo "Were you able to log back in? [y|n]${nc}"
     read -r access2
     if [ "$access2" = "n" ]; then
         echo "${green}"
         echo "Please check your Root password and try again."
-        echo "If the problem persists, leave this SSH session open and message the support channel in the Hotbox Discord server."
-    echo "${nc}"
+        echo "If the problem persists, leave this SSH session open and message the support channel in the Hotbox Discord server.${nc}"
     fi
     exit 1
 fi
@@ -73,11 +67,10 @@ echo ""
 echo "Choose a user name."
 read -r username
 if [ "$username" = "" ]; then
-   echo "No name entered; please enter a name:"
+   echo "No name entered; please enter a name:${nc}"
    read -r username
 fi
 
-echo "${nc}"
 adduser --gecos "" "$username"
 usermod -a -G sudo "$username"
 groupadd docker
@@ -86,8 +79,7 @@ usermod -aG docker "$username"
 echo "${green}"
 echo "Open a new terminal or putty session"
 echo "Login with your new username and password."
-echo "Was the login successful? (y|n)"
-echo "${nc}"
+echo "Was the login successful? (y|n)${nc}"
 read -r userLogin
 
 # disable root login and updat fstab
@@ -97,8 +89,7 @@ if [ "$userLogin" = "y" ]; then
     echo "PermitRootLogin no" >> /etc/ssh/sshd_config
 
     echo "${green}"
-    echo "Root login over ssh has been disabled for server saftey."
-    echo "${nc}"
+    echo "Root login over ssh has been disabled for server saftey.${nc}"
 fi
 
 echo "tmpfs /run/shm tmpfs defaults,noexec,nosuid 0 0" >> /etc/fstab
@@ -116,5 +107,4 @@ fi
 
 echo "${green}"
 echo "Only use the newly created user from now on."
-echo "Server reboot required. Once rebooted login as your new user."
-echo "${nc}"
+echo "Server reboot required. Once rebooted login as your new user.${nc}"

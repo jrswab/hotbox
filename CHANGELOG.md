@@ -5,9 +5,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## 2.1.0 - 2020-
 ### Added
 - Witness disabled check to update script
-- Script to secure a new server running a debian based system.
+- Script to setup a new server running a debian based system.
+  - Does basic security updates
+  - Installs Docker
+  - Creates new user
+  - Creates hotbox directory and downloads `run.sh`
 
 ### Updated
 - changelog.md with missing releases
@@ -17,7 +23,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - update.sh to be the core file.
-- readme.md now that walkthroughs are in github wiki
+- install.sh to create a tmux session with two windows
+- install.sh from hard coded version numbers to variables.
+- readme.md to have quick information now that walkthroughs are in github wiki
+- relase to be `secureMe.sh` instead of `run.sh`
 
 ## 2.0.5 - 2020-02-22
 ### Changed
