@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 
 if [ ! -d ./smoke ]; then
 	mkdir ./smoke
 fi
 
-if [ ! $(docker ps -a | tail -c 10) = "hotbox" ]; then
+if [ ! "$(docker ps -a | tail -c 10)" = "hotbox" ]; then
 	# check for user defined ports
 	if [ $# -eq 0 ]; then
 		portA=20001
@@ -19,8 +19,8 @@ if [ ! $(docker ps -a | tail -c 10) = "hotbox" ]; then
 	# run docker
 	loc="$(readlink -f smoke)"
 	docker container run -itd \
-		-v ${loc}:/home/witness/.smoke/ \
-		-p $portA:2001 -p $portB:8090 \
+		-v "${loc}":/home/witness/.smoke/ \
+		-p "$portA":2001 -p "$portB":8090 \
 		--name hotbox \
 		jrswab/hotbox:latest
 fi
