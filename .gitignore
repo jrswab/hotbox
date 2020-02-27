@@ -1,2 +1,4 @@
-smoke/*
-push.sh
+docker/smoke/
+docker/smoke/*
+docker/push.sh
+docker/buildDocker.sh
