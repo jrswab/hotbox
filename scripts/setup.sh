@@ -100,7 +100,7 @@ if [ ! -d /home/"$username"/hotbox ]; then
 	cd /home/"$username"/ &&
 	runuser -l "$username" -c 'mkdir hotbox' &&
 	runuser -l "$username" -c 'touch hotbox/run.sh' &&
-	runuser -l "$username" -c 'wget --output-document=hotbox/run.sh https://github.com/jrswab/hotbox/releases/download/v2.0.5/run.sh' &&
+	runuser -l "$username" -c 'wget --output-document=hotbox/run.sh https://raw.githubusercontent.com/jrswab/hotbox/master/scripts/run.sh' &&
 	runuser -l "$username" -c 'chmod 550 hotbox/run.sh';
 	runuser -l "$username" -c 'docker pull jrswab/hotbox'
 fi
