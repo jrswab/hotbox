@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## 2.1.0 - 2020-
+## 2.1.0 - 2020-02-27
 ### Added
 - Witness disabled check to update script
 - Script to setup a new server running a debian based system.
