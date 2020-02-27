@@ -4,21 +4,21 @@ green='\033[0;32m'
 nc='\033[0m' # No Color
 
 # Change root password (optional):
-echo "${green}"
-echo "Would you like to change the Root password? (Recomended if the server is new) [y|n]"
-echo "If your server already had you do this type n and press enter${nc}"
+printf "%s""${green}"
+printf "Would you like to change the Root password? (Recomended if the server is new) [y|n]"
+printf "If your server already had you do this type n and press enter%s""${nc}"
 read -r chgRoot
 if [ "$chgRoot" = "y" ]; then
     passwd
 fi
 
-echo "${green}"
-echo "Updating Your Operating System:${nc}"
+printf "%s""${green}"
+printf "Updating Your Operating System:%s""${nc}"
 sleep 2;
 apt-get update && apt-get upgrade;
 
-echo "${green}"
-echo "Installing firewall:${nc}";
+printf "%s""${green}"
+printf "Installing firewall:%s""${nc}";
 sleep 2;
 apt-get install ufw;
 ufw allow ssh &&
@@ -34,22 +34,22 @@ ufw limit openssh &&
 # Add to the updated walkthrough
 ufw enable;
 
-echo "${green}"
-echo "Open a new terminal or putty session."
-echo "Try to login again as root with your new password to make sure you are not locked out."
-echo "Were you able to log back in? [y|n]${nc}"
+printf "%s""${green}"
+printf "Open a new terminal or putty session."
+printf "Try to login again as root with your new password to make sure you are not locked out."
+printf "Were you able to log back in? [y|n]%s""${nc}"
 read -r access
 if [ "$access" = "n" ]; then
     ufw disable;
-    echo "${green}"
-    echo "Disabled Firewall"
-    echo "Try to login again as root with your new password to make sure you are not locked out."
-    echo "Were you able to log back in? [y|n]${nc}"
+    printf "%s""${green}"
+    printf "Disabled Firewall"
+    printf "Try to login again as root with your new password to make sure you are not locked out."
+    printf "Were you able to log back in? [y|n]%s""${nc}"
     read -r access2
     if [ "$access2" = "n" ]; then
-        echo "${green}"
-        echo "Please check your Root password and try again."
-        echo "If the problem persists, leave this SSH session open and message the support channel in the Hotbox Discord server.${nc}"
+        printf "%s""${green}"
+        printf "Please check your Root password and try again."
+        printf "If the problem persists, leave this SSH session open and message the support channel in the Hotbox Discord server.%s""${nc}"
     fi
     exit 1
 fi
@@ -60,14 +60,14 @@ sh get-docker.sh
 systemctl enable docker
 
 # user has access:
-echo "${green}"
-echo "The Hotbox can not be run as root."
-echo "So let's create a new user."
-echo ""
-echo "Choose a user name."
+printf "%s""${green}"
+printf "The Hotbox can not be run as root."
+printf "So let's create a new user."
+printf ""
+printf "Choose a user name."
 read -r username
 if [ "$username" = "" ]; then
-   echo "No name entered; please enter a name:${nc}"
+   printf "No name entered; please enter a name:%s""${nc}"
    read -r username
 fi
 
@@ -76,23 +76,23 @@ usermod -a -G sudo "$username"
 groupadd docker
 usermod -aG docker "$username"
 
-echo "${green}"
-echo "Open a new terminal or putty session"
-echo "Login with your new username and password."
-echo "Was the login successful? (y|n)${nc}"
+printf "%s""${green}"
+printf "Open a new terminal or putty session"
+printf "Login with your new username and password."
+printf "Was the login successful? (y|n)%s""${nc}"
 read -r userLogin
 
 # disable root login and updat fstab
 if [ "$userLogin" = "y" ]; then
-    # deleting with sed and appending with echo due to differences between OSes
+    # deleting with sed and appending with printf due to differences between OSes
     sed -i '/PermitRootLogin yes/c\' /etc/ssh/sshd_config
-    echo "PermitRootLogin no" >> /etc/ssh/sshd_config
+    printf "PermitRootLogin no" >> /etc/ssh/sshd_config
 
-    echo "${green}"
-    echo "Root login over ssh has been disabled for server saftey.${nc}"
+    printf "%s""${green}"
+    printf "Root login over ssh has been disabled for server saftey.%s""${nc}"
 fi
 
-echo "tmpfs /run/shm tmpfs defaults,noexec,nosuid 0 0" >> /etc/fstab
+printf "tmpfs /run/shm tmpfs defaults,noexec,nosuid 0 0" >> /etc/fstab
 
 # Check if the hotbox directory exists on the server.
 # If not change to the home directory
@@ -105,6 +105,6 @@ if [ ! -d /home/"$username"/hotbox ]; then
 	runuser -l "$username" -c 'docker pull jrswab/hotbox'
 fi
 
-echo "${green}"
-echo "Only use the newly created user from now on."
-echo "Server reboot required. Once rebooted login as your new user.${nc}"
+printf "%s""${green}"
+printf "Only use the newly created user from now on."
+printf "Server reboot required. Once rebooted login as your new user.%s""${nc}"
