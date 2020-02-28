@@ -6,11 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
-- rpc-witness.ini
+- rpc-config.ini
+- seed-config.ini
 - user input to check if RPC node or not
 
 ### Changed
 - config.ini.example to witness-config.ini
+
+### Fixed
+- setup.sh not adding new lines during walkthrough.
 
 ## 2.1.0 - 2020-02-27
 ### Added
