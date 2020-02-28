@@ -1,4 +1,4 @@
-# Hotbox Version 2.0
+# Hotbox Version
 The goal of this project is to make running a witness for smoke.io more predictable and reliable.
 
 If you have any ideas on how to make this better please let me know or submit a pull request.
@@ -6,7 +6,7 @@ If you have any ideas on how to make this better please let me know or submit a 
 ## Tested On:
 | Distro | Status |
 |-------------|--------|
-|UbuntU 19.10 | Docker not installing |
+|Ubuntu 19.10 | Docker not installing |
 |Ubuntu 18.04 LTS | Working |
 |Ubuntu 16.04 LTS | Working |
 
