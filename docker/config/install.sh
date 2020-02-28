@@ -7,12 +7,12 @@ if [ ! -f ~/.smoke/smoked ]; then
 	cd ~/.smoke || exit 1
 
 	printf "Do you wish to run an RPC node?\n"
-	printf "Please do not run an RPC node if you intend to use this server to witness or a seed node. (y|n) "
+	printf "Do not run an RPC node if you intend to use this server to witness or a seed node. (y|n) "
 	read -r isRPC
 
 	if [ "$isRPC" = "n" ]; then
 		printf "Do you wish to run a Seed node?\n"
-		printf "Please do not run an Seed node if you intend to use this server to witness or as an RPC node. (y|n) "
+		printf "Do not run an Seed node if you intend to use this server to witness or as an RPC node. (y|n) "
 		read -r isSeed
 	fi
 
