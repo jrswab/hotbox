@@ -6,8 +6,16 @@ WV="0.0.6"
 if [ ! -f ~/.smoke/smoked ]; then 
 	cd ~/.smoke || exit 1
 
+	printf "Do you wish to run an RPC node?\n"
+	printf "Please do not run an RPC node if you intend to use this server to witness. (y|n) "
+	read -r useCase
+
 	# download smoked and wallet
-	wget https://github.com/smokenetwork/smoked/releases/download/v${SV}/smoked-${SV}-x86_64-linux.tar.gz
+	if [ "$useCase" = "y" ]; then
+		wget https://github.com/smokenetwork/smoked/releases/download/v${SV}/smoked-${SV}-x86_64-linux.tar.gz
+	else # download light version
+		wget https://github.com/smokenetwork/smoked/releases/download/v${SV}/smoked_lm-${SV}-x86_64-linux.tar.gz
+	fi
 	wget https://github.com/smokenetwork/smoked/releases/download/v${WV}/cli_wallet-${WV}-x86_64-linux.tar.gz
 	
 	# extract smoked and wallet
@@ -33,9 +41,6 @@ if [ ! -f ~/.smoke/smoked ]; then
 	sleep 4
 
 	# move preset configs
-	printf "Do you wish to run an RPC node?\n"
-	printf "Please do not run an RPC node if you intend to use this server to witness. (y|n) "
-	read -r useCase
 	if [ "$useCase" = "y" ]; then
 		cp ~/.config/rpc-config.ini witness_node_data_dir/config.ini
 	else
@@ -46,7 +51,7 @@ if [ ! -f ~/.smoke/smoked ]; then
 fi
 
 # run tmux with multiple window created.
-session="hotbox"
+session="Hotbox v2.2.0 | ctrl+b # to swich | ctrl+h to leave"
 
 # set up tmux
 tmux start-server
