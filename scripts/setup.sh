@@ -5,20 +5,20 @@ nc='\033[0m' # No Color
 
 # Change root password (optional):
 printf "%s""${green}"
-printf "Would you like to change the Root password? (Recomended if the server is new) [y|n]"
+printf "Would you like to change the Root password? (Recomended if the server is new) (y|n)\n"
 printf "If your server already had you do this type n and press enter%s""${nc}"
 read -r chgRoot
 if [ "$chgRoot" = "y" ]; then
     passwd
 fi
 
-printf "%s""${green}"
-printf "Updating Your Operating System:%s""${nc}"
+printf "%s\n""${green}"
+printf "Updating Your Operating System:%s\n""${nc}"
 sleep 2;
 apt-get update && apt-get upgrade;
 
 printf "%s""${green}"
-printf "Installing firewall:%s""${nc}";
+printf "Installing firewall:%s\n""${nc}";
 sleep 2;
 apt-get install ufw;
 ufw allow ssh &&
@@ -35,23 +35,23 @@ ufw limit openssh &&
 ufw enable;
 
 printf "%s""${green}"
-printf "Open a new terminal or putty session."
-printf "Try to login again as root with your new password to make sure you are not locked out."
-printf "Were you able to log back in? [y|n]%s""${nc}"
+printf "Open a new terminal or putty session.\n"
+printf "Try to login again as root with your new password to make sure you are not locked out.\n"
+printf "Were you able to log back in? (y|n)%s ""${nc}"
 read -r access
 if [ "$access" = "n" ]; then
     ufw disable;
     printf "%s""${green}"
-    printf "Disabled Firewall"
-    printf "Try to login again as root with your new password to make sure you are not locked out."
-    printf "Were you able to log back in? [y|n]%s""${nc}"
+    printf "Disabled Firewall\n"
+    printf "Try to login again as root with your new password to make sure you are not locked out.\n"
+    printf "Were you able to log back in? (y|n)%s ""${nc}"
     read -r access2
     if [ "$access2" = "n" ]; then
-        printf "%s""${green}"
-        printf "Please check your Root password and try again."
-        printf "If the problem persists, leave this SSH session open and message the support channel in the Hotbox Discord server.%s""${nc}"
+        printf "\n%s""${green}"
+        printf "Please check your Root password and try again.\n"
+        printf "If the problem persists, leave this SSH session open and message the support channel in the Hotbox Discord server.%s\n""${nc}"
+        exit 1
     fi
-    exit 1
 fi
 
 # Install Docker:
@@ -61,13 +61,13 @@ systemctl enable docker
 
 # user has access:
 printf "%s""${green}"
-printf "The Hotbox can not be run as root."
-printf "So let's create a new user."
-printf ""
-printf "Choose a user name."
+printf "The Hotbox can not be run as root.\n"
+printf "So let's create a new user.\n"
+printf "\n"
+printf "Choose a user name.\n"
 read -r username
 if [ "$username" = "" ]; then
-   printf "No name entered; please enter a name:%s""${nc}"
+   printf "No name entered; please enter a name:%s ""${nc}"
    read -r username
 fi
 
@@ -77,9 +77,9 @@ groupadd docker
 usermod -aG docker "$username"
 
 printf "%s""${green}"
-printf "Open a new terminal or putty session"
-printf "Login with your new username and password."
-printf "Was the login successful? (y|n)%s""${nc}"
+printf "Open a new terminal or putty session.\n"
+printf "Login with your new username and password..\n"
+printf "Was the login successful? (y|n)%s ""${nc}"
 read -r userLogin
 
 # disable root login and updat fstab
@@ -89,7 +89,7 @@ if [ "$userLogin" = "y" ]; then
     printf "PermitRootLogin no" >> /etc/ssh/sshd_config
 
     printf "%s""${green}"
-    printf "Root login over ssh has been disabled for server saftey.%s""${nc}"
+    printf "Root login over ssh has been disabled for server security.%s \n""${nc}"
 fi
 
 printf "tmpfs /run/shm tmpfs defaults,noexec,nosuid 0 0" >> /etc/fstab
@@ -106,5 +106,5 @@ if [ ! -d /home/"$username"/hotbox ]; then
 fi
 
 printf "%s""${green}"
-printf "Only use the newly created user from now on."
-printf "Server reboot required. Once rebooted login as your new user.%s""${nc}"
+printf "Only use the newly created user from now on.\n"
+printf "Server reboot required. Once rebooted login as your new user.%s\n""${nc}"
