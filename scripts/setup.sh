@@ -6,7 +6,7 @@ nc='\033[0m' # No Color
 # Change root password (optional):
 printf "%s""${green}"
 printf "Would you like to change the Root password? (Recomended if the server is new) (y|n)\n"
-printf "If your server already had you do this type n and press enter%s""${nc}"
+printf "If your server already had you do this type n and press enter%s ""${nc}"
 read -r chgRoot
 if [ "$chgRoot" = "y" ]; then
     passwd
@@ -17,7 +17,7 @@ printf "Updating Your Operating System:%s\n""${nc}"
 sleep 2;
 apt-get update && apt-get upgrade;
 
-printf "%s""${green}"
+printf "%s\n""${green}"
 printf "Installing firewall:%s\n""${nc}";
 sleep 2;
 apt-get install ufw;
