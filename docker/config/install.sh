@@ -34,8 +34,7 @@ if [ ! -f ~/.smoke/smoked ]; then
 
 	# move preset configs
 	printf "Do you wish to run an RPC node?\n"
-	Prinf "Please do not run an RPC node if you intend to use this server to witness.\n"
-	printf "(y | n)\n"
+	printf "Please do not run an RPC node if you intend to use this server to witness. (y|n) "
 	read -r useCase
 	if [ "$useCase" = "y" ]; then
 		cp ~/.config/rpc-config.ini witness_node_data_dir/config.ini
