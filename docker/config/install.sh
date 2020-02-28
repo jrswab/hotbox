@@ -7,27 +7,40 @@ if [ ! -f ~/.smoke/smoked ]; then
 	cd ~/.smoke || exit 1
 
 	printf "Do you wish to run an RPC node?\n"
-	printf "Please do not run an RPC node if you intend to use this server to witness. (y|n) "
-	read -r useCase
+	printf "Please do not run an RPC node if you intend to use this server to witness or a seed node. (y|n) "
+	read -r isRPC
 
-	# download smoked and wallet
-	if [ "$useCase" = "y" ]; then
-		wget https://github.com/smokenetwork/smoked/releases/download/v${SV}/smoked-${SV}-x86_64-linux.tar.gz
-	else # download light version
-		wget https://github.com/smokenetwork/smoked/releases/download/v${SV}/smoked_lm-${SV}-x86_64-linux.tar.gz
+	if [ "$isRPC" = "n" ]; then
+		printf "Do you wish to run a Seed node?\n"
+		printf "Please do not run an Seed node if you intend to use this server to witness or as an RPC node. (y|n) "
+		read -r isSeed
 	fi
+
+	if [ "$isRPC" = "n" ] && [ "$isSeed" = "n" ]; then
+		printf "Installing Witness... \n"
+	elif [ "$isRPC" = "y" ]; then
+		printf "Installing RPC node... \n"
+	elif [ "$isSeed" = "y" ]; then
+		printf "Installing Seed node... \n"
+	fi
+
+	if [ "$isRPC" = "y" ]; then # download and extract full smoked
+		wget https://github.com/smokenetwork/smoked/releases/download/v${SV}/smoked-${SV}-x86_64-linux.tar.gz
+		tar -xzf smoked-${SV}-x86_64-linux.tar.gz
+		rm smoked-${SV}-x86_64-linux.tar.gz
+	else # download and extract light version
+		wget https://github.com/smokenetwork/smoked/releases/download/v${SV}/smoked_lm-${SV}-x86_64-linux.tar.gz
+		tar -xzf smoked_lm-${SV}-x86_64-linux.tar.gz
+		rm smoked_lm-${SV}-x86_64-linux.tar.gz
+	fi
+
+	# download and extract wallet
 	wget https://github.com/smokenetwork/smoked/releases/download/v${WV}/cli_wallet-${WV}-x86_64-linux.tar.gz
-	
-	# extract smoked and wallet
-	tar -xzf smoked-${SV}-x86_64-linux.tar.gz
 	tar -xzf cli_wallet-${WV}-x86_64-linux.tar.gz
-	
-	# remove tar files
-	rm smoked-${SV}-x86_64-linux.tar.gz
 	rm cli_wallet-${WV}-x86_64-linux.tar.gz
 	
 	# wait two seconds
-	echo "Starting Smoked to build directories..."
+	printf "Starting Smoked to build directories...\n"
 	sleep 2
 
 	# Launch script in background
@@ -41,8 +54,10 @@ if [ ! -f ~/.smoke/smoked ]; then
 	sleep 4
 
 	# move preset configs
-	if [ "$useCase" = "y" ]; then
+	if [ "$isRPC" = "y" ]; then
 		cp ~/.config/rpc-config.ini witness_node_data_dir/config.ini
+	elif [ "$isSeed" = "y" ]; then
+		cp ~/.config/seed-config.ini witness_node_data_dir/config.ini
 	else
 		cp ~/.config/witness-config.ini witness_node_data_dir/config.ini
 	fi
