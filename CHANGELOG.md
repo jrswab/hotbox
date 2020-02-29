@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - smoked to light version for seed nodes and witnesses
 - install.sh if statments to case statements.
 - wallet.sh RPC to jrswab.com
+- witness and seed config `shared-file-size` to 12G
 
 ### Fixed
 - setup.sh not adding new lines during walkthrough.
