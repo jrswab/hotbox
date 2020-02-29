@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## 2.2.0 - 2020-02-29
+## 2.2.0 - 2020-
 ### Added
 - rpc-config.ini
 - seed-config.ini
@@ -17,9 +17,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - tmux name to include hotkeys for changing widows and leaving the hotbox correctly.
 - smoked to light version for seed nodes and witnesses
 - install.sh if statments to case statements.
+- wallet.sh RPC to jrswab.com
 
 ### Fixed
 - setup.sh not adding new lines during walkthrough.
+- witness shared-file-size
 
 ## 2.1.0 - 2020-02-27
 ### Added

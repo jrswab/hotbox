@@ -1,4 +1,4 @@
 #!/bin/bash
 cd .smoke || exit
 
-./cli_wallet -s ws://51.158.79.144:8090
+./cli_wallet -s ws://rpc.jrswab.com:8090
