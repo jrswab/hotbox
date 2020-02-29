@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - setup.sh not adding new lines during walkthrough.
 - witness shared-file-size
+- continuation issue when user enters an invalid user name
 
 ## 2.1.0 - 2020-02-27
 ### Added

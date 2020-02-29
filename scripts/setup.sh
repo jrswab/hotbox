@@ -60,16 +60,22 @@ sh get-docker.sh
 systemctl enable docker
 
 # user has access:
+username=""
 printf "%s""${green}"
 printf "The Hotbox can not be run as root.\n"
 printf "So let's create a new user.\n"
 printf "\n"
-printf "Choose a user name.\n"
-read -r username
-if [ "$username" = "" ]; then
-   printf "No name entered; please enter a name:%s ""${nc}"
-   read -r username
-fi
+
+# Make sure username is a lowercase "word"
+while true
+do
+    printf "Please enter a user name containing only lowercase letters:\n"
+    read -r username
+    checkRegex=$(printf "%s""$username" | sed -E '/^[a-z]*$/p' | wc -l)
+    if [ "$checkRegex" = 1 ]; then
+        break;
+    fi
+done
 
 adduser --gecos "" "$username"
 usermod -a -G sudo "$username"
