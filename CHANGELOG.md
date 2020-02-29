@@ -5,12 +5,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## 2.2.0 - 2020-02-29
 ### Added
-- rpc-witness.ini
+- rpc-config.ini
+- seed-config.ini
 - user input to check if RPC node or not
 
 ### Changed
 - config.ini.example to witness-config.ini
+- tmux name to include hotkeys for changing widows and leaving the hotbox correctly.
+- smoked to light version for seed nodes and witnesses
+- install.sh if statments to case statements.
+- wallet.sh RPC to jrswab.com
+- witness and seed config `shared-file-size` to 12G
+
+### Fixed
+- setup.sh not adding new lines during walkthrough.
+- witness shared-file-size
+- continuation issue when user enters an invalid user name
 
 ## 2.1.0 - 2020-02-27
 ### Added

@@ -3,27 +3,50 @@ SV="0.1.0"
 WV="0.0.6"
 
 # see if smoked exists
-if [ ! -f ~/.smoke/smoked ]; then 
-	cd ~/.smoke || exit 1
+if [ ! -f "$HOME"/.smoke/smoked ]; then 
+	cd "$HOME"/.smoke || exit 1
 
-	# download smoked and wallet
-	wget https://github.com/smokenetwork/smoked/releases/download/v${SV}/smoked-${SV}-x86_64-linux.tar.gz
+	printf "What do you wish to run?\n"
+	printf "Please enter witness, rpc, or seed. (no capital letters)\n"
+	read -r nodeType
+
+	while true
+	do
+		case "$nodeType" in
+			"rpc") printf "Installing RPC node... \n"
+				wget https://github.com/smokenetwork/smoked/releases/download/v${SV}/smoked-${SV}-x86_64-linux.tar.gz
+				tar -xzf smoked-${SV}-x86_64-linux.tar.gz
+				rm smoked-${SV}-x86_64-linux.tar.gz
+				break;;
+
+			"seed") printf "Installing Seed node... \n"
+				wget https://github.com/smokenetwork/smoked/releases/download/v${SV}/smoked_lm-${SV}-x86_64-linux.tar.gz
+				tar -xzf smoked_lm-${SV}-x86_64-linux.tar.gz
+				rm smoked_lm-${SV}-x86_64-linux.tar.gz
+				break;;
+
+			"witness") printf "Installing Witness... \n"
+				wget https://github.com/smokenetwork/smoked/releases/download/v${SV}/smoked_lm-${SV}-x86_64-linux.tar.gz
+				tar -xzf smoked_lm-${SV}-x86_64-linux.tar.gz
+				rm smoked_lm-${SV}-x86_64-linux.tar.gz
+				break;;
+
+			* ) printf "Please enter witness, rpc, or seed. (no capital letters)\n"
+				read -r nodeType
+		esac
+	done
+
+	# download and extract wallet
 	wget https://github.com/smokenetwork/smoked/releases/download/v${WV}/cli_wallet-${WV}-x86_64-linux.tar.gz
-	
-	# extract smoked and wallet
-	tar -xzf smoked-${SV}-x86_64-linux.tar.gz
 	tar -xzf cli_wallet-${WV}-x86_64-linux.tar.gz
-	
-	# remove tar files
-	rm smoked-${SV}-x86_64-linux.tar.gz
 	rm cli_wallet-${WV}-x86_64-linux.tar.gz
 	
 	# wait two seconds
-	echo "Starting Smoked to build directories..."
+	printf "Starting Smoked to build directories...\n"
 	sleep 2
 
 	# Launch script in background
-	~/.smoke/smoked &
+	"$HOME"/.smoke/smoked &
 	# Get its PID
 	smokePID=$!
 	# Wait for 2 seconds
@@ -33,20 +56,24 @@ if [ ! -f ~/.smoke/smoked ]; then
 	sleep 4
 
 	# move preset configs
-	printf "Do you wish to run an RPC node?\n"
-	printf "Please do not run an RPC node if you intend to use this server to witness. (y|n) "
-	read -r useCase
-	if [ "$useCase" = "y" ]; then
-		cp ~/.config/rpc-config.ini witness_node_data_dir/config.ini
-	else
-		cp ~/.config/witness-config.ini witness_node_data_dir/config.ini
-	fi
+	case "$nodeType" in
+		"rpc")
+			cp "$HOME"/.config/rpc-config.ini witness_node_data_dir/config.ini
+			;;
+		"seed")
+			cp "$HOME"/.config/seed-config.ini witness_node_data_dir/config.ini
+			;;
+		"witness")
+			cp "$HOME"/.config/witness-config.ini witness_node_data_dir/config.ini
+			;;
+	esac
+
 	# move to home dir
 	cd || exit 1
 fi
 
 # run tmux with multiple window created.
-session="hotbox"
+session="Hotbox | ctrl+h to leave | ctrl+b then a number to swich windows"
 
 # set up tmux
 tmux start-server
