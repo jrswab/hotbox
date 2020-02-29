@@ -3,36 +3,38 @@ SV="0.1.0"
 WV="0.0.6"
 
 # see if smoked exists
-if [ ! -f ~/.smoke/smoked ]; then 
-	cd ~/.smoke || exit 1
+if [ ! -f "$HOME"/.smoke/smoked ]; then 
+	cd "$HOME"/.smoke || exit 1
 
-	printf "Do you wish to run an RPC node?\n"
-	printf "Do not run an RPC node if you intend to use this server to witness or a seed node. (y|n) "
-	read -r isRPC
+	printf "What do you wish to run?\n"
+	printf "Please enter witness, rpc, or seed. (no capital letters)\n"
+	read -r nodeType
 
-	if [ "$isRPC" = "n" ]; then
-		printf "Do you wish to run a Seed node?\n"
-		printf "Do not run an Seed node if you intend to use this server to witness or as an RPC node. (y|n) "
-		read -r isSeed
-	fi
+	while true
+	do
+		case "$nodeType" in
+			"rpc") printf "Installing RPC node... \n"
+				wget https://github.com/smokenetwork/smoked/releases/download/v${SV}/smoked-${SV}-x86_64-linux.tar.gz
+				tar -xzf smoked-${SV}-x86_64-linux.tar.gz
+				rm smoked-${SV}-x86_64-linux.tar.gz
+				break;;
 
-	if [ "$isRPC" = "n" ] && [ "$isSeed" = "n" ]; then
-		printf "Installing Witness... \n"
-	elif [ "$isRPC" = "y" ]; then
-		printf "Installing RPC node... \n"
-	elif [ "$isSeed" = "y" ]; then
-		printf "Installing Seed node... \n"
-	fi
+			"seed") printf "Installing Seed node... \n"
+				wget https://github.com/smokenetwork/smoked/releases/download/v${SV}/smoked_lm-${SV}-x86_64-linux.tar.gz
+				tar -xzf smoked_lm-${SV}-x86_64-linux.tar.gz
+				rm smoked_lm-${SV}-x86_64-linux.tar.gz
+				break;;
 
-	if [ "$isRPC" = "y" ]; then # download and extract full smoked
-		wget https://github.com/smokenetwork/smoked/releases/download/v${SV}/smoked-${SV}-x86_64-linux.tar.gz
-		tar -xzf smoked-${SV}-x86_64-linux.tar.gz
-		rm smoked-${SV}-x86_64-linux.tar.gz
-	else # download and extract light version
-		wget https://github.com/smokenetwork/smoked/releases/download/v${SV}/smoked_lm-${SV}-x86_64-linux.tar.gz
-		tar -xzf smoked_lm-${SV}-x86_64-linux.tar.gz
-		rm smoked_lm-${SV}-x86_64-linux.tar.gz
-	fi
+			"witness") printf "Installing Witness... \n"
+				wget https://github.com/smokenetwork/smoked/releases/download/v${SV}/smoked_lm-${SV}-x86_64-linux.tar.gz
+				tar -xzf smoked_lm-${SV}-x86_64-linux.tar.gz
+				rm smoked_lm-${SV}-x86_64-linux.tar.gz
+				break;;
+
+			* ) printf "Please enter witness, rpc, or seed. (no capital letters)\n"
+				read -r nodeType
+		esac
+	done
 
 	# download and extract wallet
 	wget https://github.com/smokenetwork/smoked/releases/download/v${WV}/cli_wallet-${WV}-x86_64-linux.tar.gz
@@ -44,7 +46,7 @@ if [ ! -f ~/.smoke/smoked ]; then
 	sleep 2
 
 	# Launch script in background
-	~/.smoke/smoked &
+	"$HOME"/.smoke/smoked &
 	# Get its PID
 	smokePID=$!
 	# Wait for 2 seconds
@@ -54,19 +56,24 @@ if [ ! -f ~/.smoke/smoked ]; then
 	sleep 4
 
 	# move preset configs
-	if [ "$isRPC" = "y" ]; then
-		cp ~/.config/rpc-config.ini witness_node_data_dir/config.ini
-	elif [ "$isSeed" = "y" ]; then
-		cp ~/.config/seed-config.ini witness_node_data_dir/config.ini
-	else
-		cp ~/.config/witness-config.ini witness_node_data_dir/config.ini
-	fi
+	case "$nodeType" in
+		"rpc")
+			cp "$HOME"/.config/rpc-config.ini witness_node_data_dir/config.ini
+			;;
+		"seed")
+			cp "$HOME"/.config/seed-config.ini witness_node_data_dir/config.ini
+			;;
+		"witness")
+			cp "$HOME"/.config/witness-config.ini witness_node_data_dir/config.ini
+			;;
+	esac
+
 	# move to home dir
 	cd || exit 1
 fi
 
 # run tmux with multiple window created.
-session="Hotbox v2.2.0 | ctrl+b # to swich | ctrl+h to leave"
+session="Hotbox | ctrl+h to leave | ctrl+b then a number to swich windows"
 
 # set up tmux
 tmux start-server

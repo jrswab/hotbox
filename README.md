@@ -8,6 +8,7 @@ If you have any ideas on how to make this better please let me know or submit a 
 |--------|--------|-------------|
 |Debian 10 | Working | 2020-02-28 |
 |Debian 9 | Working | 2020-02-28 |
+|Debian 8 | Working | 2020-02-28 |
 |Ubuntu 19.10 | Docker not installing | 2020-02-26 |
 |Ubuntu 18.04 LTS | Working | 2020-02-26 |
 |Ubuntu 16.04 LTS | Working | 2020-02-26 |
