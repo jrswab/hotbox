@@ -1,4 +1,4 @@
-# Hotbox Version
+# Hotbox
 The goal of this project is to make running a witness for smoke.io more predictable and reliable.
 
 If you have any ideas on how to make this better please let me know or submit a pull request.

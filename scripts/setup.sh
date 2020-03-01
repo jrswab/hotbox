@@ -22,9 +22,9 @@ printf "Installing firewall:%s\n""${nc}";
 sleep 2;
 apt-get install ufw;
 ufw allow ssh &&
-ufw allow 2001 &&
-ufw allow 8090 &&
-ufw allow 8080 &&
+ufw allow 20001 && # for P2P node
+ufw allow 28090 && # for RPC node
+ufw allow 28080 && # for webapp
 ufw deny http &&
 ufw deny https && 
 ufw default deny incoming &&

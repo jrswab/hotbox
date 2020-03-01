@@ -3,11 +3,15 @@ SV="0.1.0"
 WV="0.0.6"
 
 # see if smoked exists
-if [ ! -f "$HOME"/.smoke/smoked ]; then 
+if [ ! -f "$HOME"/.smoke/cli_wallet ]; then 
+	if [ ! -d "$HOME"/.smoke ]; then 
+		mkdir "$HOME"/.smoke
+	fi
 	cd "$HOME"/.smoke || exit 1
+	sleep 1
 
 	printf "What do you wish to run?\n"
-	printf "Please enter witness, rpc, or seed. (no capital letters)\n"
+	printf "Please enter witness, rpc, seed, or webapp. (no capital letters)\n"
 	read -r nodeType
 
 	while true
@@ -19,19 +23,37 @@ if [ ! -f "$HOME"/.smoke/smoked ]; then
 				rm smoked-${SV}-x86_64-linux.tar.gz
 				break;;
 
-			"seed") printf "Installing Seed node... \n"
+			"seed") printf "Installing Smoked LM... \n"
 				wget https://github.com/smokenetwork/smoked/releases/download/v${SV}/smoked_lm-${SV}-x86_64-linux.tar.gz
 				tar -xzf smoked_lm-${SV}-x86_64-linux.tar.gz
 				rm smoked_lm-${SV}-x86_64-linux.tar.gz
 				break;;
 
-			"witness") printf "Installing Witness... \n"
+			"witness") printf "Installing Smoked LM... \n"
 				wget https://github.com/smokenetwork/smoked/releases/download/v${SV}/smoked_lm-${SV}-x86_64-linux.tar.gz
 				tar -xzf smoked_lm-${SV}-x86_64-linux.tar.gz
 				rm smoked_lm-${SV}-x86_64-linux.tar.gz
 				break;;
 
-			* ) printf "Please enter witness, rpc, or seed. (no capital letters)\n"
+			"webapp") printf "Installing the Webapp...\n"
+				cd || exit 1
+				git clone https://github.com/smokenetwork/webapp.git
+
+				cd webapp || exit 1
+				mkdir tmp
+
+				yarn global add babel-cli
+				yarn install
+				yarn run build
+				yarn run production
+
+				export SDC_CLIENT_STEEMD_URL="https://rpc.jrswab.com"
+				export SDC_SERVER_STEEMD_URL="https://rpc.jrswab.com"
+
+				cd .smoke || exit 1
+				break;;
+
+			* ) printf "Please enter witness, rpc, seed, or webapp. (no capital letters)\n"
 				read -r nodeType
 		esac
 	done
