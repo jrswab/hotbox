@@ -16,12 +16,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `config.ini.example` to `witness-config.ini`
 - tmux name to include hotkeys for changing widows and leaving the hotbox correctly.
 - smoked to light version for seed nodes and witnesses
-- install.sh if statements to case statements.
-- wallet.sh RPC to jrswab.com
+- `install.sh` if statements to case statements.
+- `wallet.sh` RPC to `jrswab.com`
 - witness and seed config `shared-file-size` to 12G
 
 ### Fixed
-- setup.sh not adding new lines during walk through.
+- `setup.sh` not adding new lines during walk through.
 - witness shared-file-size
 - continuation issue when user enters an invalid user name
 
@@ -35,21 +35,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Creates hotbox directory and downloads `run.sh`
 
 ### Updated
-- changelog.md with missing releases
-- contributing.md
-- .gitinore
-- .dockerignore
+- `changelog.md` with missing releases
+- `contributing.md`
+- `.gitinore`
+- `.dockerignore`
 
 ### Changed
-- update.sh to be the core file.
-- install.sh to create a tmux session with two windows
-- install.sh from hard coded version numbers to variables.
-- readme.md to have quick information now that walkthroughs are in github wiki
-- relase to be `secureMe.sh` instead of `run.sh`
+- `update.sh` to be the core file.
+- `install.sh` to create a tmux session with two windows
+- `install.sh` from hard coded version numbers to variables.
+- `readme.md` to have quick information now that walk throughs are in the Github wiki
+- release to be `secureMe.sh` instead of `run.sh`
 
 ## 2.0.5 - 2020-02-22
 ### Changed
-- Config.ini plugins for less RAM usage
+- `Config.ini` plugins for less RAM usage
 
 ## 2.0.4 - 2020-02-21
 ### Changed
