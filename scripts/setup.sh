@@ -24,6 +24,7 @@ apt-get install ufw;
 ufw allow ssh &&
 ufw allow 2001 &&
 ufw allow 8090 &&
+ufw allow 8080 &&
 ufw deny http &&
 ufw deny https && 
 ufw default deny incoming &&
